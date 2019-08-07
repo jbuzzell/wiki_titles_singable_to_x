@@ -22,6 +22,5 @@ you can fork this repo and easily fill in the blank with whatever meme you'd lik
 
 <ul>
     <li><a href="https://pypi.org/project/wikipedia/">Wikipedia</a></li>
-    <li><a href="https://pypi.org/project/syllables/">Syllables</a></li>
     <li><a href="http://docs.tweepy.org/en/latest/index.html">tweePy</a></li>
 <ul>
