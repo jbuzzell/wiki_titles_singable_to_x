@@ -1,8 +1,8 @@
 import auth
 import wikipedia
-import re
 import os
 import random
+import syllable_count
 
 api = auth.auth()
 random.seed()
@@ -23,10 +23,8 @@ def find_wiki_page(syllable_constraint=5):
 
         tmp = wikipedia.random()
 
-        if syllable_count(tmp) == syllable_constraint\
-                and not forbidden_phrases_in_result(tmp)\
-                and re.search(r'\d{4}', tmp) is None\
-                and re.search(r' [A-Z]{2,} ', tmp) is None:
+        if syllable_count.syllable_count(tmp) == syllable_constraint\
+                and not forbidden_phrases_in_result(tmp):
 
             return tmp
 
@@ -47,28 +45,6 @@ def forbidden_phrases_in_result(result):
             return True
 
     return False
-
-
-# from Jeremy McGibbon @ https://stackoverflow.com/questions/46759492/syllable-count-in-python
-def syllable_count(word):
-
-    word = word.lower()
-    count = 0
-    vowels = "aeiouy"
-
-    if word[0] in vowels:
-        count += 1
-        
-    for index in range(1, len(word)):
-        if word[index] in vowels and word[index - 1] not in vowels:
-            count += 1
-
-    if word.endswith("e"):
-        count -= 1
-    if count == 0:
-        count += 1
-
-    return count
 
 
 if __name__ == "__main__":   
