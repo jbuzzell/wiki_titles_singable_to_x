@@ -1,7 +1,7 @@
 <h1>WIKI TITLES SINGABLE TO (X)</h1>
 
 <p>Basically allows you to do the exact same thing as <a href="https://twitter.com/wiki_tmnt">this account</a>, except
-you can fork this repo and easily fill in the blank with whatever meme you'd like. The <i>this_is_america</i> branch already exists for you.</p>
+you can fork this repo and easily fill in the blank with whatever meme you'd like.</p>
 
 <h2>USAGE</h2>
 
@@ -22,6 +22,5 @@ you can fork this repo and easily fill in the blank with whatever meme you'd lik
 
 <ul>
     <li><a href="https://pypi.org/project/wikipedia/">Wikipedia</a></li>
-    <li><a href="https://pypi.org/project/syllables/">Syllables</a></li>
     <li><a href="http://docs.tweepy.org/en/latest/index.html">tweePy</a></li>
 <ul>
