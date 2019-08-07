@@ -1,5 +1,7 @@
 import re
 import json
+import requests
+import auth
 
 
 def syllable_count(word):
@@ -8,7 +10,7 @@ def syllable_count(word):
     count = special_cases[0]
 
     for w in special_cases[1]:
-        count += parse_generic(w)
+        count += get_syllables(w)
 
     return count
 
@@ -61,7 +63,7 @@ def parse_year(year):
 
 
 # from Jeremy McGibbon @ https://stackoverflow.com/questions/46759492/syllable-count-in-python
-    # TODO: fix this. it sucks.
+    # THIS IS A FALLBACK IN CASE THE WORD IS NOT IN THE DICTIONARY
 def parse_generic(word):
 
     word = word.lower()
@@ -81,3 +83,18 @@ def parse_generic(word):
         count += 1
 
     return count
+
+
+def get_syllables(word):
+
+    request = requests.get("https://www.dictionaryapi.com/api/v3/references/collegiate/json/" + word,
+                           params={"key": auth.mw_key})
+
+    if len(request.json()) != 0 and type(request.json()[0]) is not str:
+        return len(request.json()[0]["hwi"]["hw"])
+    else:
+        return parse_generic(word)
+
+
+if __name__ == "__main__":
+    syllable_count("1977 Big Wow Convention")

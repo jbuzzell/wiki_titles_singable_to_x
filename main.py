@@ -48,4 +48,4 @@ def forbidden_phrases_in_result(result):
 
 
 if __name__ == "__main__":   
-    post()
+    print(find_wiki_page(6))
