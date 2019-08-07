@@ -1,11 +1,50 @@
 import auth
+import wikipedia
+import syllables
+import os
+import random
 
 api = auth.auth()
+random.seed()
 
 
 def post():
-    status = api.update_status("getting tweet id from api")
-    api.update_status("replying", in_reply_to_status_id=status._json["id"])
+
+    title = find_wiki_page()
+    title_url = 'https://en.wikipedia.com/wiki/' + title.replace(" ", "_")
+
+    status = api.update_with_media("img/" + get_random_image(), status=title)
+    api.update_status(title_url, in_reply_to_status_id=status._json["id"])
+
+
+def find_wiki_page(syllable_constraint=5):
+
+    while True:
+
+        tmp = wikipedia.random()
+
+        if syllables.estimate(tmp) == syllable_constraint\
+                and not forbidden_phrases_in_result(tmp):
+
+            return tmp
+
+
+def get_random_image():
+    return os.listdir("img/")[random.randint(0, len(os.listdir("img/")) - 1)]
+
+
+def forbidden_phrases_in_result(result):
+
+    with open("forbidden_phrases.txt") as f:
+        content = f.readlines()
+
+    content = [line.rstrip('\n') for line in content]
+
+    for phrase in content:
+        if phrase in result:
+            return True
+
+    return False
 
 
 if __name__ == "__main__":

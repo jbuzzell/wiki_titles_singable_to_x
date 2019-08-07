@@ -1,5 +1,6 @@
 import tweepy
 
+
 def auth():
 
     consumer_key = ""
