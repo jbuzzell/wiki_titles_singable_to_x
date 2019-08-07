@@ -2,7 +2,6 @@ import re
 import json
 
 
-# from Jeremy McGibbon @ https://stackoverflow.com/questions/46759492/syllable-count-in-python
 def syllable_count(word):
 
     special_cases = check_special_pronunciation(word)
@@ -61,6 +60,8 @@ def parse_year(year):
     return count
 
 
+# from Jeremy McGibbon @ https://stackoverflow.com/questions/46759492/syllable-count-in-python
+    # TODO: fix this. it sucks.
 def parse_generic(word):
 
     word = word.lower()
@@ -80,7 +81,3 @@ def parse_generic(word):
         count += 1
 
     return count
-
-
-if __name__ == "__main__":
-    print(syllable_count("1977 AARP Corn Shucking Fanatics Expo"))
